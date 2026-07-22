@@ -21,7 +21,7 @@ export default function HeroSection({ onOpenBooking }) {
             </h1>
 
             <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', marginBottom: '32px', maxWidth: '600px', lineHeight: '1.7' }}>
-              Bespoke Neuro-Linguistic Programming (NLP) & Executive Business Advisory directly with <strong>Lukmaan</strong>. ANLP Practitioner & Coach since 2012, and NLP Academy Registered Trainer since 2013.
+              A private strategic partnership with <strong>Lukmaan</strong> for visionary leaders and executives. Integrating advanced Neuro-Linguistic Programming (NLP) with bespoke business advisory to unlock breakthrough performance, emotional mastery, and decisive leadership.
             </p>
 
             {/* Accreditation Badge Strip */}
