@@ -51,9 +51,8 @@ export function getAvailableSlotsForDate(dateStr) {
   ];
 
   // Filter out any slots already booked on this date
-  const bookings = getBookings();
-  const bookedTimes = bookings
-    .filter(b => b.date === dateStr && b.status !== 'Cancelled')
+  const bookedTimes = (bookings || [])
+    .filter(b => b && typeof b === 'object' && b.date === dateStr && b.status !== 'Cancelled')
     .map(b => b.timeSlot);
 
   return baseSlots.map(slot => ({
