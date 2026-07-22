@@ -6,14 +6,14 @@ const STORAGE_KEY = 'aura_coaching_bookings_v1';
 export function getBookings() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (!stored) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_BOOKINGS));
-    return INITIAL_BOOKINGS;
+    return Array.isArray(INITIAL_BOOKINGS) ? INITIAL_BOOKINGS : [];
   }
   try {
-    return JSON.parse(stored);
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed) ? parsed : [];
   } catch (err) {
     console.error('Error parsing stored bookings:', err);
-    return INITIAL_BOOKINGS;
+    return [];
   }
 }
 

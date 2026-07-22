@@ -37,7 +37,9 @@ export default function App() {
     setBookingList(getBookings());
   };
 
-  const activeBookingsCount = bookingList.filter(b => b.status !== 'Cancelled').length;
+  const activeBookingsCount = Array.isArray(bookingList) 
+    ? bookingList.filter(b => b && b.status !== 'Cancelled').length 
+    : 0;
 
   return (
     <div className="app-container">
