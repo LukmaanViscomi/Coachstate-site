@@ -114,6 +114,62 @@ function generateIcsContent({ bookingId, sessionTitle, startUtc, endUtc, googleM
   ].join('\r\n');
 }
 
+// Global in-memory storage for all created client bookings
+const ALL_BOOKINGS = [
+  {
+    id: "bk-1001",
+    clientName: "Marcus Vance",
+    clientEmail: "m.vance@vanguardexec.com",
+    clientRole: "VP of Product, Vanguard FinTech",
+    tierId: "exec-advisory",
+    sessionTitle: "Executive Leadership & Business Advisory with Lukmaan",
+    category: "Executive Support",
+    date: "2026-07-25",
+    timeSlot: "10:00 AM",
+    durationMinutes: 60,
+    googleMeetUrl: "https://meet.google.com/qzw-mvba-rtp",
+    notes: "Focus on Q4 product organization restructuring & managing high-conflict stakeholder negotiations.",
+    status: "Confirmed",
+    createdAt: "2026-07-22T10:30:00Z"
+  },
+  {
+    id: "bk-1002",
+    clientName: "Elena Rostova",
+    clientEmail: "elena.rostova@designstudio.co",
+    clientRole: "Founder & Creative Director",
+    tierId: "personal-breakthrough",
+    sessionTitle: "NLP Life & Mindset Breakthrough with Lukmaan",
+    category: "Personal Life Coaching",
+    date: "2026-07-27",
+    timeSlot: "02:00 PM",
+    durationMinutes: 60,
+    googleMeetUrl: "https://meet.google.com/xya-pqrk-vbn",
+    notes: "Work-life boundary restoration and overcoming founder burnout.",
+    status: "Confirmed",
+    createdAt: "2026-07-21T14:15:00Z"
+  }
+];
+
+/**
+ * Backend API Endpoint: GET /api/all-bookings (Founder Dashboard)
+ */
+app.get('/api/all-bookings', (req, res) => {
+  res.json({ success: true, bookings: ALL_BOOKINGS });
+});
+
+/**
+ * Backend API Endpoint: POST /api/cancel-booking
+ */
+app.post('/api/cancel-booking', (req, res) => {
+  const { id } = req.body;
+  const booking = ALL_BOOKINGS.find(b => b.id === id);
+  if (booking) {
+    booking.status = 'Cancelled';
+    return res.json({ success: true, booking });
+  }
+  res.status(404).json({ success: false, message: 'Booking not found' });
+});
+
 /**
  * Backend API Endpoint: POST /api/create-booking
  */
@@ -172,7 +228,7 @@ app.post('/api/create-booking', async (req, res) => {
       const response = await calendar.events.insert({
         calendarId: calendarId,
         conferenceDataVersion: 1,
-        sendUpdates: 'all', // Google automatically dispatches calendar email invite to client!
+        sendUpdates: 'all',
         requestBody: eventPayload
       });
 
@@ -222,10 +278,10 @@ app.post('/api/create-booking', async (req, res) => {
           <div style="background-color: #141b2d; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #1e293b;">
             <p style="margin: 6px 0;">🌐 <strong>Your Local Time:</strong> ${clientFormattedTime}</p>
             <p style="margin: 6px 0;">🇬🇧 <strong>Lukmaan's UK Time:</strong> ${ukFormattedTime}</p>
-            <p style="margin: 6px 0;">📍 <strong>Google Meet Video Link:</strong> <a href="${googleMeetUrl}" style="color: #60a5fa;">${googleMeetUrl}</a></p>
+            <p style="margin: 6px 0;">📍 <strong>Video Link:</strong> <a href="${googleMeetUrl}" style="color: #60a5fa;">${googleMeetUrl}</a></p>
           </div>
 
-          <p style="color: #94a3b8; font-size: 0.9rem;">An calendar invitation has been attached to this email. It will automatically adjust to your calendar's local timezone.</p>
+          <p style="color: #94a3b8; font-size: 0.9rem;">A calendar invitation has been attached to this email. It will automatically adjust to your calendar's local timezone.</p>
           <p style="margin-top: 24px;">Warm regards,<br/><strong>Lukmaan | Coachstate Executive Advisory</strong><br/>lv@coachstate.online</p>
         </div>
       `;
@@ -266,6 +322,9 @@ app.post('/api/create-booking', async (req, res) => {
     status: 'Confirmed',
     createdAt: new Date().toISOString()
   };
+
+  // Push to server-side array for Lukmaan's Founder Dashboard
+  ALL_BOOKINGS.unshift(bookingResult);
 
   res.json({ success: true, booking: bookingResult });
 });

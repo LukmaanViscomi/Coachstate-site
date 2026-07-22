@@ -119,40 +119,7 @@ export const COACHING_TIERS = {
   ]
 };
 
-export const INITIAL_BOOKINGS = [
-  {
-    id: "bk-1001",
-    clientName: "Marcus Vance",
-    clientEmail: "m.vance@vanguardexec.com",
-    clientRole: "VP of Product, Vanguard FinTech",
-    tierId: "exec-advisory",
-    sessionTitle: "Executive Leadership & Business Advisory with Lukmaan",
-    category: "Executive Support",
-    date: "2026-07-25",
-    timeSlot: "10:00 AM",
-    durationMinutes: 60,
-    googleMeetUrl: "https://meet.google.com/qzw-mvba-rtp",
-    notes: "Focus on Q4 product organization restructuring & managing high-conflict stakeholder negotiations.",
-    status: "Confirmed",
-    createdAt: "2026-07-22T10:30:00Z"
-  },
-  {
-    id: "bk-1002",
-    clientName: "Elena Rostova",
-    clientEmail: "elena.rostova@designstudio.co",
-    clientRole: "Founder & Creative Director",
-    tierId: "personal-breakthrough",
-    sessionTitle: "NLP Life & Mindset Breakthrough with Lukmaan",
-    category: "Personal Life Coaching",
-    date: "2026-07-27",
-    timeSlot: "02:00 PM",
-    durationMinutes: 60,
-    googleMeetUrl: "https://meet.google.com/xya-pqrk-vbn",
-    notes: "Work-life boundary restoration and overcoming founder burnout.",
-    status: "Confirmed",
-    createdAt: "2026-07-21T14:15:00Z"
-  }
-];
+export const INITIAL_BOOKINGS = [];
 
 export const TESTIMONIALS = [
   {

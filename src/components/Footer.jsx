@@ -2,7 +2,7 @@ import React from 'react';
 import CompanyLogo from './CompanyLogo.jsx';
 import { Calendar, Video, ShieldCheck, Mail, Globe, Lock } from 'lucide-react';
 
-export default function Footer({ onOpenBooking, onOpenGoogleSettings, onOpenLegalModal }) {
+export default function Footer({ onOpenBooking, onOpenGoogleSettings, onOpenLegalModal, onOpenFounderDashboard }) {
   return (
     <footer style={{
       background: '#060911',
@@ -72,10 +72,14 @@ export default function Footer({ onOpenBooking, onOpenGoogleSettings, onOpenLega
           <div>
             © {new Date().getFullYear()} Coachstate (`coachstate.online`). All rights reserved. Registered ANLP Trainer.
           </div>
-          <div style={{ display: 'flex', gap: '20px' }}>
+          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
             <button onClick={() => onOpenLegalModal('privacy')} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}>Privacy Policy</button>
             <button onClick={() => onOpenLegalModal('terms')} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}>Terms of Advisory</button>
             <button onClick={() => onOpenLegalModal('cookies')} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}>Cookie Policy</button>
+            <button onClick={onOpenFounderDashboard} style={{ background: 'rgba(212, 175, 55, 0.1)', border: '1px solid var(--border-gold)', color: 'var(--text-gold)', padding: '4px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.78rem' }}>
+              <Lock size={12} />
+              <span>Founder Login</span>
+            </button>
           </div>
         </div>
 

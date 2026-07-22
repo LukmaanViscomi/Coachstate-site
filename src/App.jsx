@@ -6,6 +6,7 @@ import Testimonials from './components/Testimonials.jsx';
 import Footer from './components/Footer.jsx';
 import BookingModal from './components/BookingModal.jsx';
 import ClientPortal from './components/ClientPortal.jsx';
+import FounderDashboard from './components/FounderDashboard.jsx';
 import GoogleWorkspaceManager from './components/GoogleWorkspaceManager.jsx';
 import LegalModals from './components/LegalModals.jsx';
 import CookieBanner from './components/CookieBanner.jsx';
@@ -17,6 +18,7 @@ export default function App() {
   const [selectedTierId, setSelectedTierId] = useState('personal-breakthrough');
   
   const [isPortalOpen, setIsPortalOpen] = useState(false);
+  const [isFounderDashboardOpen, setIsFounderDashboardOpen] = useState(false);
   const [isGoogleSettingsOpen, setIsGoogleSettingsOpen] = useState(false);
   const [activeLegalModal, setActiveLegalModal] = useState(null); // 'terms' | 'privacy' | 'cookies'
 
@@ -59,6 +61,7 @@ export default function App() {
         onOpenBooking={handleOpenBooking}
         onOpenGoogleSettings={() => setIsGoogleSettingsOpen(true)}
         onOpenLegalModal={modalType => setActiveLegalModal(modalType)}
+        onOpenFounderDashboard={() => setIsFounderDashboardOpen(true)}
       />
 
       {/* Interactive Modals */}
@@ -73,6 +76,11 @@ export default function App() {
         isOpen={isPortalOpen}
         onClose={() => setIsPortalOpen(false)}
         onOpenNewBooking={() => handleOpenBooking()}
+      />
+
+      <FounderDashboard 
+        isOpen={isFounderDashboardOpen}
+        onClose={() => setIsFounderDashboardOpen(false)}
       />
 
       <GoogleWorkspaceManager 
