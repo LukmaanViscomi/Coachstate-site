@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, Sparkles, Calendar, ArrowRight, UserCheck } from 'lucide-react';
 
 export default function TriageAgentWidget({ onSelectTier }) {
