@@ -158,6 +158,96 @@ app.get('/api/all-bookings', (req, res) => {
 });
 
 /**
+ * Backend API Endpoint: GET /api/available-slots
+ * Queries Google Calendar FreeBusy API & local bookings to auto-block holidays, dental appointments, and existing events
+ */
+app.get('/api/available-slots', async (req, res) => {
+  const { date, timezone, durationMinutes } = req.query;
+  const dateStr = date || new Date().toISOString().split('T')[0];
+  const clientTz = timezone || 'Europe/London';
+  const duration = durationMinutes ? Number(durationMinutes) : 60;
+
+  const candidateSlots = [
+    '09:00 AM',
+    '10:00 AM',
+    '11:30 AM',
+    '01:30 PM',
+    '03:00 PM',
+    '04:30 PM'
+  ];
+
+  // 1. Check local/in-memory bookings
+  const localBookedTimes = ALL_BOOKINGS
+    .filter(b => b.date === dateStr && b.status !== 'Cancelled')
+    .map(b => b.timeSlot);
+
+  // Check Google OAuth credentials
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
+  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'lv@coachstate.online';
+
+  let busyIntervals = [];
+  let googleSynced = false;
+
+  if (clientId && clientSecret && refreshToken) {
+    try {
+      const oauth2Client = new google.auth.OAuth2(clientId, clientSecret);
+      oauth2Client.setCredentials({ refresh_token: refreshToken });
+      const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+
+      const dayStart = getUtcDateFromClientTime(dateStr, '12:00 AM', clientTz);
+      const dayEnd = new Date(dayStart.getTime() + 24 * 3600 * 1000);
+
+      const freeBusyRes = await calendar.freebusy.query({
+        requestBody: {
+          timeMin: dayStart.toISOString(),
+          timeMax: dayEnd.toISOString(),
+          items: [{ id: calendarId }]
+        }
+      });
+
+      if (freeBusyRes.data?.calendars?.[calendarId]?.busy) {
+        busyIntervals = freeBusyRes.data.calendars[calendarId].busy.map(b => ({
+          start: new Date(b.start).getTime(),
+          end: new Date(b.end).getTime()
+        }));
+        googleSynced = true;
+      }
+    } catch (err) {
+      console.error('Error querying Google Calendar FreeBusy API:', err.message);
+    }
+  }
+
+  // Evaluate candidate slots
+  const slots = candidateSlots.map(slot => {
+    const slotStart = getUtcDateFromClientTime(dateStr, slot, clientTz).getTime();
+    const slotEnd = slotStart + duration * 60000;
+
+    // Check local booking conflict
+    const isLocallyBooked = localBookedTimes.includes(slot);
+
+    // Check Google Calendar FreeBusy conflict (dental appointments, holidays, meetings)
+    const isGoogleBusy = busyIntervals.some(b => {
+      return (slotStart < b.end && slotEnd > b.start);
+    });
+
+    const isAvailable = !isLocallyBooked && !isGoogleBusy;
+    let reason = null;
+    if (isGoogleBusy) reason = 'Busy on Google Calendar';
+    else if (isLocallyBooked) reason = 'Already booked session';
+
+    return {
+      time: slot,
+      available: isAvailable,
+      reason
+    };
+  });
+
+  res.json({ success: true, date: dateStr, googleSynced, slots });
+});
+
+/**
  * Backend API Endpoint: POST /api/cancel-booking
  */
 app.post('/api/cancel-booking', (req, res) => {

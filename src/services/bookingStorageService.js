@@ -58,6 +58,29 @@ export function getAvailableSlotsForDate(dateStr) {
 
   return baseSlots.map(slot => ({
     time: slot,
-    available: !bookedTimes.includes(slot)
+    available: !bookedTimes.includes(slot),
+    reason: bookedTimes.includes(slot) ? 'Already booked session' : null
   }));
+}
+
+export async function fetchAvailableSlotsAsync(dateStr, timezone = 'Europe/London', durationMinutes = 60) {
+  try {
+    const res = await fetch(`/api/available-slots?date=${dateStr}&timezone=${encodeURIComponent(timezone)}&durationMinutes=${durationMinutes}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.slots) {
+        return data;
+      }
+    }
+  } catch (err) {
+    console.warn('Backend slots fetch failed, using local fallback:', err);
+  }
+
+  // Fallback to local check
+  return {
+    success: true,
+    date: dateStr,
+    googleSynced: false,
+    slots: getAvailableSlotsForDate(dateStr)
+  };
 }

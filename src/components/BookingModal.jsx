@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { COACHING_TIERS } from '../services/mockData.js';
-import { saveBooking, getAvailableSlotsForDate } from '../services/bookingStorageService.js';
+import { saveBooking, getAvailableSlotsForDate, fetchAvailableSlotsAsync } from '../services/bookingStorageService.js';
 import { createGoogleCalendarWebUrl, downloadIcsCalendarFile, getStoredGoogleAccessToken, createLiveGoogleCalendarEvent } from '../services/googleCalendarService.js';
-import { Calendar as CalendarIcon, Clock, Video, X, CheckCircle2, User, Mail, Briefcase, FileText, ExternalLink, Download, Copy, ArrowLeft, Loader2 } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, Video, X, CheckCircle2, User, Mail, Briefcase, FileText, ExternalLink, Download, Copy, ArrowLeft, Loader2, AlertCircle } from 'lucide-react';
 
 export default function BookingModal({ isOpen, onClose, initialTierId, onBookingComplete }) {
   const [step, setStep] = useState(1); // 1: Tier, 2: Date & Slot, 3: Intake Form, 4: Confirmation
@@ -17,6 +17,8 @@ export default function BookingModal({ isOpen, onClose, initialTierId, onBooking
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
   const [timeSlots, setTimeSlots] = useState([]);
   const [detectedTimezone, setDetectedTimezone] = useState('');
+  const [isLoadingSlots, setIsLoadingSlots] = useState(false);
+  const [isGoogleSynced, setIsGoogleSynced] = useState(false);
 
   // Form State
   const [clientName, setClientName] = useState('');
@@ -50,16 +52,35 @@ export default function BookingModal({ isOpen, onClose, initialTierId, onBooking
     }
   }, [isOpen, initialTierId]);
 
-  // Update time slots when date changes
+  // Update time slots asynchronously via backend Google Calendar FreeBusy API
   useEffect(() => {
+    let isMounted = true;
     if (selectedDate) {
-      const slots = getAvailableSlotsForDate(selectedDate);
-      setTimeSlots(slots);
-      const firstAvail = slots.find(s => s.available);
-      if (firstAvail) setSelectedTimeSlot(firstAvail.time);
-      else setSelectedTimeSlot('');
+      setIsLoadingSlots(true);
+      const currentTier = allTiers.find(t => t.id === selectedTierId);
+      const durationMinutes = currentTier?.durationMinutes || 60;
+
+      fetchAvailableSlotsAsync(selectedDate, detectedTimezone, durationMinutes)
+        .then(res => {
+          if (!isMounted) return;
+          if (res && res.slots) {
+            setTimeSlots(res.slots);
+            setIsGoogleSynced(res.googleSynced || false);
+            const firstAvail = res.slots.find(s => s.available);
+            if (firstAvail) setSelectedTimeSlot(firstAvail.time);
+            else setSelectedTimeSlot('');
+          }
+          setIsLoadingSlots(false);
+        })
+        .catch(err => {
+          if (!isMounted) return;
+          const fallback = getAvailableSlotsForDate(selectedDate);
+          setTimeSlots(fallback);
+          setIsLoadingSlots(false);
+        });
     }
-  }, [selectedDate]);
+    return () => { isMounted = false; };
+  }, [selectedDate, detectedTimezone, selectedTierId]);
 
   if (!isOpen) return null;
 
@@ -321,7 +342,15 @@ export default function BookingModal({ isOpen, onClose, initialTierId, onBooking
 
             {/* Time Slot Grid */}
             <div style={{ marginBottom: '28px' }}>
-              <div className="form-label">Available Google Meet Time Slots ({selectedDate})</div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <div className="form-label" style={{ margin: 0 }}>Available Advisory Time Slots ({selectedDate})</div>
+                {isLoadingSlots && (
+                  <span style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Loader2 size={12} className="spin" /> Syncing Calendar...
+                  </span>
+                )}
+              </div>
+
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
                 {timeSlots.map((slot, idx) => (
                   <button
@@ -329,24 +358,32 @@ export default function BookingModal({ isOpen, onClose, initialTierId, onBooking
                     onClick={() => slot.available && setSelectedTimeSlot(slot.time)}
                     disabled={!slot.available}
                     style={{
-                      padding: '14px',
+                      padding: '14px 10px',
                       borderRadius: 'var(--radius-sm)',
-                      background: selectedTimeSlot === slot.time ? 'var(--accent-gold)' : slot.available ? 'rgba(15, 23, 42, 0.7)' : 'rgba(255, 255, 255, 0.02)',
-                      border: selectedTimeSlot === slot.time ? '1px solid var(--accent-gold)' : '1px solid var(--border-glass)',
-                      color: selectedTimeSlot === slot.time ? '#080C16' : slot.available ? 'var(--text-primary)' : 'var(--text-muted)',
+                      background: selectedTimeSlot === slot.time ? 'var(--accent-gold)' : slot.available ? 'rgba(15, 23, 42, 0.7)' : 'rgba(239, 68, 68, 0.05)',
+                      border: selectedTimeSlot === slot.time ? '1px solid var(--accent-gold)' : slot.available ? '1px solid var(--border-glass)' : '1px dashed rgba(239, 68, 68, 0.3)',
+                      color: selectedTimeSlot === slot.time ? '#080C16' : slot.available ? 'var(--text-primary)' : '#FCA5A5',
                       fontWeight: selectedTimeSlot === slot.time ? '700' : '500',
                       cursor: slot.available ? 'pointer' : 'not-allowed',
-                      opacity: slot.available ? 1 : 0.4,
+                      opacity: slot.available ? 1 : 0.5,
                       display: 'flex',
+                      flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '8px',
+                      gap: '4px',
                       fontSize: '0.9rem',
                       transition: 'all 0.2s'
                     }}
                   >
-                    <Clock size={14} />
-                    <span>{slot.time}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <Clock size={14} />
+                      <span>{slot.time}</span>
+                    </div>
+                    {!slot.available && (
+                      <div style={{ fontSize: '0.66rem', color: '#FCA5A5', fontWeight: '600', textTransform: 'uppercase' }}>
+                        {slot.reason || 'Busy on Calendar'}
+                      </div>
+                    )}
                   </button>
                 ))}
               </div>
