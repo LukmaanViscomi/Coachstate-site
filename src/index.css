@@ -288,6 +288,14 @@ html, body {
   display: none;
 }
 
+/* Global Floating Widget Positioning */
+.triage-widget-container {
+  position: fixed !important;
+  bottom: 85px !important;
+  right: 24px !important;
+  z-index: 9999 !important;
+}
+
 @media (max-width: 768px) {
   .logo-subtitle-desktop {
     display: none !important;

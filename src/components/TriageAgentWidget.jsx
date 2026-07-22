@@ -89,8 +89,8 @@ export default function TriageAgentWidget({ onSelectTier }) {
           }}
         >
           <div className="pulse-dot" />
-          <Bot size={20} color="var(--accent-gold-light)" />
-          <span>Ask AI Triage Assistant</span>
+          <Bot size={18} color="var(--accent-gold-light)" />
+          <span>Ask a Question?</span>
         </button>
       )}
 
@@ -133,9 +133,9 @@ export default function TriageAgentWidget({ onSelectTier }) {
                 <Bot size={18} color="var(--accent-gold)" />
               </div>
               <div>
-                <div style={{ fontSize: '0.95rem', fontWeight: '700', color: '#FFF' }}>Coachstate Triage Agent</div>
+                <div style={{ fontSize: '0.95rem', fontWeight: '700', color: '#FFF' }}>Ask a Question</div>
                 <div style={{ fontSize: '0.72rem', color: '#6EE7B7', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <span className="pulse-dot" style={{ width: '6px', height: '6px' }} /> Online & Ready
+                  <span className="pulse-dot" style={{ width: '6px', height: '6px' }} /> Executive AI Assistant
                 </div>
               </div>
             </div>
