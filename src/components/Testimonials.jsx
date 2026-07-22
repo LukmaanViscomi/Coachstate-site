@@ -61,7 +61,8 @@ export default function Testimonials() {
                 overflow: 'hidden',
                 border: '1px solid var(--border-gold)',
                 boxShadow: 'var(--shadow-card)',
-                height: '380px'
+                height: '480px',
+                background: 'rgba(9, 13, 22, 0.8)'
               }}>
                 <img 
                   src="/assets/lukmaan/lukmaan_formal.png" 
@@ -70,7 +71,7 @@ export default function Testimonials() {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    objectPosition: 'center 15%'
+                    objectPosition: 'center 10%'
                   }}
                 />
               </div>
@@ -82,19 +83,19 @@ export default function Testimonials() {
                 right: '20px',
                 background: 'rgba(9, 13, 22, 0.95)',
                 border: '1px solid var(--accent-gold)',
-                padding: '8px 14px',
+                padding: '10px 18px',
                 borderRadius: 'var(--radius-md)',
                 boxShadow: 'var(--shadow-modal)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px'
+                gap: '12px'
               }}>
                 <img 
                   src="/assets/anlp/anlp acfedited-edited.png" 
                   alt="ANLP Accredited Badge" 
-                  style={{ height: '32px', objectFit: 'contain' }}
+                  style={{ height: '48px', objectFit: 'contain' }}
                 />
-                <span style={{ fontSize: '0.76rem', color: 'var(--text-gold)', fontWeight: '700' }}>
+                <span style={{ fontSize: '0.84rem', color: 'var(--text-gold)', fontWeight: '700' }}>
                   ANLP Registered Trainer
                 </span>
               </div>
@@ -131,20 +132,25 @@ export default function Testimonials() {
               </div>
 
               {/* Secondary ANLP Membership Seals strip */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', borderTop: '1px solid var(--border-glass)', paddingTop: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '20px', borderTop: '1px solid var(--border-glass)', paddingTop: '20px', flexWrap: 'wrap' }}>
                 <img 
                   src="/assets/anlp/ANLP_Pro_Member_Logo-2022--2x (1).png" 
                   alt="ANLP Pro Member" 
-                  style={{ height: '34px', objectFit: 'contain' }}
+                  style={{ height: '54px', objectFit: 'contain', background: '#FFF', padding: '4px 8px', borderRadius: '6px' }}
+                />
+                <img 
+                  src="/assets/anlp/ANLP-Accredited-Trainer-Gold-Logo-Landscape-1024x545.jpg" 
+                  alt="ANLP Accredited Gold Trainer Seal" 
+                  style={{ height: '54px', objectFit: 'contain', borderRadius: '6px' }}
                 />
                 <img 
                   src="/assets/anlp/anlp full logo.png" 
                   alt="ANLP Full Accreditation Seal" 
-                  style={{ height: '34px', objectFit: 'contain' }}
+                  style={{ height: '54px', objectFit: 'contain', background: '#FFF', padding: '4px 8px', borderRadius: '6px' }}
                 />
-                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: '600' }}>
                   Certified NLP Academy Registered Trainer since 2013
-                </span>
+                </div>
               </div>
             </div>
 
