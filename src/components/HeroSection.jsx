@@ -94,7 +94,7 @@ export default function HeroSection({ onOpenBooking }) {
               {/* Lukmaan Executive Photo Container */}
               <div style={{
                 width: '100%',
-                height: '280px',
+                height: '440px',
                 borderRadius: 'var(--radius-md)',
                 overflow: 'hidden',
                 marginBottom: '20px',
@@ -109,7 +109,7 @@ export default function HeroSection({ onOpenBooking }) {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    objectPosition: 'center 20%'
+                    objectPosition: 'center 15%'
                   }}
                 />
                 <div style={{
@@ -117,22 +117,24 @@ export default function HeroSection({ onOpenBooking }) {
                   bottom: 0,
                   inset: 'auto 0 0 0',
                   background: 'linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, transparent 100%)',
-                  padding: '16px',
+                  padding: '20px 16px 16px',
                   display: 'flex',
                   alignItems: 'flex-end',
                   justifyContent: 'space-between'
                 }}>
                   <div>
-                    <h3 style={{ fontSize: '1.25rem', color: '#FFF', margin: 0 }}>{COACH_INFO.name}</h3>
-                    <div style={{ fontSize: '0.82rem', color: 'var(--accent-gold-light)' }}>{COACH_INFO.shortTitle}</div>
+                    <h3 style={{ fontSize: '1.35rem', color: '#FFF', margin: 0, fontWeight: '700' }}>{COACH_INFO.name}</h3>
+                    <div style={{ fontSize: '0.88rem', color: 'var(--accent-gold-light)', fontWeight: '600' }}>
+                      NLP Personal & Executive Coach
+                    </div>
                   </div>
-                  <span className="badge badge-gold" style={{ fontSize: '0.68rem', background: '#0F172A' }}>
-                    ANLP Trainer since 2013
+                  <span className="badge badge-gold" style={{ fontSize: '0.7rem', background: '#0F172A' }}>
+                    ANLP Registered Since 2013
                   </span>
                 </div>
               </div>
 
-              {/* Live Calendar Integration Widget Box */}
+              {/* Live Availability Box */}
               <div style={{
                 background: 'rgba(9, 13, 22, 0.75)',
                 borderRadius: 'var(--radius-md)',
@@ -144,10 +146,10 @@ export default function HeroSection({ onOpenBooking }) {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div className="pulse-dot" />
                     <span style={{ fontSize: '0.8rem', fontWeight: '700', color: '#FFF', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      Live Google Calendar Availability
+                      Executive Advisory Availability
                     </span>
                   </div>
-                  <span className="badge badge-gold" style={{ fontSize: '0.68rem' }}>lv@coachstate.online</span>
+                  <span className="badge badge-gold" style={{ fontSize: '0.68rem' }}>Direct 1-on-1 Booking</span>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '12px' }}>
@@ -172,20 +174,20 @@ export default function HeroSection({ onOpenBooking }) {
                   ))}
                 </div>
 
-                {/* Google Meet Preview Line */}
+                {/* Session Confirmation Preview Line */}
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
                   padding: '8px 12px',
-                  background: 'rgba(16, 185, 129, 0.08)',
-                  border: '1px dashed rgba(16, 185, 129, 0.3)',
+                  background: 'rgba(212, 175, 55, 0.08)',
+                  border: '1px dashed rgba(212, 175, 55, 0.3)',
                   borderRadius: 'var(--radius-sm)',
                   fontSize: '0.78rem',
-                  color: '#6EE7B7'
+                  color: 'var(--accent-gold-light)'
                 }}>
-                  <Video size={14} color="#10B981" />
-                  <span>Auto-generates Google Meet room upon confirmation</span>
+                  <Clock size={14} color="var(--accent-gold)" />
+                  <span>Instant 1-on-1 session confirmation & calendar invite</span>
                 </div>
               </div>
 

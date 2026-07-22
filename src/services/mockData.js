@@ -1,7 +1,7 @@
 export const COACH_INFO = {
   name: "Lukmaan",
   fullTitle: "Lukmaan | ANLP Master Trainer, Executive Strategist & Life Coach",
-  shortTitle: "ANLP Master Trainer & Executive Coach",
+  shortTitle: "NLP Personal & Executive Coach",
   email: "lv@coachstate.online",
   bio: "Empowering C-Suite executives, founders, and ambitious individuals through Neuro-Linguistic Programming (NLP), high-performance coaching, and strategic advisory. Practitioner and coach since 2012, and NLP Academy Registered Trainer since 2013. Specializing in cognitive reframing, emotional mastery, executive presence, and rapid behavioral transformation.",
   credentials: [
