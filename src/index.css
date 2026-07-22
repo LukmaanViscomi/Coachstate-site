@@ -272,7 +272,14 @@ h1, h2, h3, h4, .font-serif {
   }
 }
 
-/* Navigation Responsive Button Helpers */
+/* Navigation Responsive Button & Layout Helpers */
+html, body {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  margin: 0;
+  padding: 0;
+}
+
 .btn-text-desktop {
   display: inline;
 }
@@ -282,6 +289,10 @@ h1, h2, h3, h4, .font-serif {
 }
 
 @media (max-width: 768px) {
+  .logo-subtitle-desktop {
+    display: none !important;
+  }
+
   .btn-text-desktop {
     display: none !important;
   }
@@ -290,11 +301,38 @@ h1, h2, h3, h4, .font-serif {
     display: inline !important;
   }
 
+  .nav-actions-mobile {
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
   .nav-actions-mobile .btn {
     width: auto !important;
-    padding: 7px 12px !important;
+    padding: 6px 10px !important;
+    font-size: 0.78rem !important;
+    gap: 5px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Floating Widgets Mobile Responsive Positioning */
+  .cookie-banner-floating {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    width: calc(100% - 24px) !important;
+    max-width: 100% !important;
+    z-index: 10000 !important;
+  }
+
+  .triage-widget-container {
+    bottom: 120px !important;
+    right: 16px !important;
+    z-index: 9999 !important;
+  }
+
+  .triage-widget-container button {
+    padding: 10px 14px !important;
     font-size: 0.8rem !important;
-    gap: 6px !important;
   }
 }
 

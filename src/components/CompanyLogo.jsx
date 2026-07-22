@@ -33,7 +33,7 @@ export default function CompanyLogo({ size = 'medium', showText = true }) {
           }}>
             COACHSTATE
           </div>
-          <div style={{
+          <div className="logo-subtitle-desktop" style={{
             fontSize: dims.subSize,
             fontWeight: '700',
             letterSpacing: '0.14em',

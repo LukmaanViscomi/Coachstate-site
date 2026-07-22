@@ -66,7 +66,7 @@ export default function TriageAgentWidget({ onSelectTier }) {
   };
 
   return (
-    <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 99 }}>
+    <div className="triage-widget-container" style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999 }}>
       
       {/* Floating Trigger Button */}
       {!isOpen && (

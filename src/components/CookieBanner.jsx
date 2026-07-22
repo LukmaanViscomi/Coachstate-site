@@ -19,20 +19,24 @@ export default function CookieBanner({ onOpenPolicy }) {
   if (accepted) return null;
 
   return (
-    <div style={{
-      position: 'fixed',
-      bottom: '24px',
-      left: '24px',
-      zIndex: 90,
-      maxWidth: '440px',
-      background: 'rgba(15, 23, 42, 0.95)',
-      backdropFilter: 'blur(16px)',
-      border: '1px solid var(--border-gold)',
-      borderRadius: 'var(--radius-md)',
-      padding: '20px',
-      boxShadow: 'var(--shadow-modal)',
-      animation: 'slideUp 0.3s ease-out'
-    }}>
+    <div 
+      className="cookie-banner-floating"
+      style={{
+        position: 'fixed',
+        bottom: '24px',
+        left: '24px',
+        zIndex: 10000,
+        maxWidth: '440px',
+        width: 'calc(100% - 48px)',
+        background: 'rgba(15, 23, 42, 0.98)',
+        backdropFilter: 'blur(20px)',
+        border: '1px solid var(--accent-gold)',
+        borderRadius: 'var(--radius-md)',
+        padding: '20px',
+        boxShadow: 'var(--shadow-modal)',
+        animation: 'slideUp 0.3s ease-out'
+      }}
+    >
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '14px' }}>
         <Cookie size={22} color="var(--accent-gold)" style={{ flexShrink: 0, marginTop: '2px' }} />
         <div>
