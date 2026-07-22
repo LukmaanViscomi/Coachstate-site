@@ -32,10 +32,13 @@ class ErrorBoundary extends React.Component {
           textAlign: 'center',
           fontFamily: 'sans-serif'
         }}>
-          <h2 style={{ color: '#D4AF37', marginBottom: '12px' }}>Coachstate Advisory</h2>
-          <p style={{ color: '#94A3B8', marginBottom: '20px', maxWidth: '500px', lineHeight: '1.6' }}>
-            A temporary session error occurred. Please click below to reset your session cache and restore the page.
+          <h2 style={{ color: '#D4AF37', marginBottom: '12px' }}>Coachstate Advisory Diagnostics</h2>
+          <p style={{ color: '#FCA5A5', marginBottom: '16px', maxWidth: '600px', lineHeight: '1.6', fontFamily: 'monospace', background: 'rgba(239, 68, 68, 0.1)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
+            {this.state.error?.toString() || 'Unknown Error'}
           </p>
+          <pre style={{ fontSize: '0.72rem', color: '#94A3B8', textAlign: 'left', maxWidth: '700px', overflowX: 'auto', background: '#0F172A', padding: '12px', borderRadius: '8px', marginBottom: '20px' }}>
+            {this.state.error?.stack || 'No stack trace'}
+          </pre>
           <button 
             onClick={() => {
               try { localStorage.clear(); } catch(e) {}

@@ -5,7 +5,7 @@ import { Calendar, Video, Check, Briefcase, User, Sparkles, ArrowRight } from 'l
 export default function ServiceTiers({ onSelectTier }) {
   const [activeCategory, setActiveCategory] = useState('personal');
 
-  const currentTiers = COACHING_TIERS[activeCategory];
+  const currentTiers = (COACHING_TIERS && COACHING_TIERS[activeCategory]) || [];
 
   return (
     <section id="services" className="section" style={{ background: 'rgba(15, 23, 42, 0.4)' }}>
