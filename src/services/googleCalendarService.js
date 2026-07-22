@@ -153,18 +153,22 @@ export async function createLiveGoogleCalendarEvent(booking, accessToken) {
   }
 }
 
-/**
- * Helper to convert date string "YYYY-MM-DD" and "10:00 AM" slot to JavaScript Date object
- */
 function parseBookingDateTime(dateStr, timeSlotStr) {
-  const [year, month, day] = dateStr.split('-').map(Number);
-  let [time, modifier] = timeSlotStr.split(' ');
-  let [hours, minutes] = time.split(':').map(Number);
+  if (!dateStr || !timeSlotStr) return new Date();
+  try {
+    const [year, month, day] = (dateStr || '').split('-').map(Number);
+    const parts = (timeSlotStr || '').split(' ');
+    let time = parts[0] || '10:00';
+    let modifier = parts[1] || 'AM';
+    let [hours, minutes] = (time || '10:00').split(':').map(Number);
 
-  if (modifier === 'PM' && hours < 12) hours += 12;
-  if (modifier === 'AM' && hours === 12) hours = 0;
+    if (modifier === 'PM' && hours < 12) hours += 12;
+    if (modifier === 'AM' && hours === 12) hours = 0;
 
-  return new Date(year, month - 1, day, hours, minutes, 0);
+    return new Date(year || new Date().getFullYear(), (month || 1) - 1, day || 1, hours || 0, minutes || 0, 0);
+  } catch (e) {
+    return new Date();
+  }
 }
 
 /**
@@ -179,9 +183,17 @@ export function getGoogleWorkspaceConfig() {
       console.error('Failed to parse google workspace config', e);
     }
   }
+  
+  let envClientId = '';
+  try {
+    if (typeof import.meta !== 'undefined' && import.meta.env) {
+      envClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
+    }
+  } catch (e) {}
+
   return {
     mode: 'sandbox', // 'sandbox' | 'live'
-    clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID || '',
+    clientId: envClientId,
     googleAccountEmail: 'lv@coachstate.online',
     autoGenerateMeetLinks: true,
     calendarId: 'primary',

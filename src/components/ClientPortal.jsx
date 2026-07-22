@@ -18,9 +18,10 @@ export default function ClientPortal({ isOpen, onClose, onOpenNewBooking }) {
 
   const todayStr = new Date().toISOString().split('T')[0];
 
-  const filteredBookings = bookings.filter(b => {
-    if (filter === 'upcoming') return b.status !== 'Cancelled' && b.date >= todayStr;
-    if (filter === 'past') return b.status !== 'Cancelled' && b.date < todayStr;
+  const filteredBookings = (bookings || []).filter(b => {
+    if (!b) return false;
+    if (filter === 'upcoming') return b.status !== 'Cancelled' && (b.date || '') >= todayStr;
+    if (filter === 'past') return b.status !== 'Cancelled' && (b.date || '') < todayStr;
     if (filter === 'cancelled') return b.status === 'Cancelled';
     return true;
   });
