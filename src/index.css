@@ -288,12 +288,41 @@ html, body {
   display: none;
 }
 
-/* Global Floating Widget Positioning */
+/* Global Floating Widget Positioning & Auto-Docking */
 .triage-widget-container {
   position: fixed !important;
   bottom: 85px !important;
-  right: 24px !important;
+  right: 0 !important;
   z-index: 9999 !important;
+}
+
+.widget-trigger-btn {
+  background: linear-gradient(135deg, #D4AF37 0%, #0F172A 100%);
+  color: #FFF;
+  border: 1px solid var(--accent-gold);
+  border-radius: 9999px 0 0 9999px;
+  padding: 12px 20px 12px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  transform: translateX(0);
+}
+
+/* Docked state: slides to the right screen edge so only the pulse dot & bot icon stick out! */
+.widget-trigger-btn.docked {
+  transform: translateX(calc(100% - 56px));
+}
+
+/* Hover or focus: smoothly slides out into full Ask a Question? pill! */
+.widget-trigger-btn.docked:hover,
+.widget-trigger-btn.docked:focus {
+  transform: translateX(0);
+  box-shadow: -4px 4px 25px rgba(212, 175, 55, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -334,13 +363,13 @@ html, body {
 
   .triage-widget-container {
     bottom: 120px !important;
-    right: 16px !important;
+    right: 0 !important;
     z-index: 9999 !important;
   }
 
-  .triage-widget-container button {
-    padding: 10px 14px !important;
-    font-size: 0.8rem !important;
+  .widget-trigger-btn {
+    padding: 10px 16px 10px 14px !important;
+    font-size: 0.82rem !important;
   }
 }
 

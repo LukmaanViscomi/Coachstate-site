@@ -3,7 +3,16 @@ import { MessageSquare, X, Send, Bot, Sparkles, Calendar, ArrowRight, UserCheck 
 
 export default function TriageAgentWidget({ onSelectTier }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDocked, setIsDocked] = useState(false);
   const [input, setInput] = useState('');
+
+  // Auto-dock to edge after 3.5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsDocked(true);
+    }, 3500);
+    return () => clearTimeout(timer);
+  }, []);
   
   const [messages, setMessages] = useState([
     {
@@ -66,31 +75,20 @@ export default function TriageAgentWidget({ onSelectTier }) {
   };
 
   return (
-    <div className="triage-widget-container" style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999 }}>
+    <div className="triage-widget-container">
       
-      {/* Floating Trigger Button */}
+      {/* Floating Auto-Docking Trigger Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          style={{
-            background: 'linear-gradient(135deg, #D4AF37 0%, #0F172A 100%)',
-            color: '#FFF',
-            border: '1px solid var(--accent-gold)',
-            padding: '14px 20px',
-            borderRadius: '9999px',
-            boxShadow: 'var(--shadow-modal)',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            fontWeight: '700',
-            fontSize: '0.92rem',
-            transition: 'all 0.25s ease'
-          }}
+          onMouseEnter={() => setIsDocked(false)}
+          onMouseLeave={() => setIsDocked(true)}
+          className={`widget-trigger-btn ${isDocked ? 'docked' : 'expanded'}`}
+          title="Click to Ask a Question"
         >
-          <div className="pulse-dot" />
-          <Bot size={18} color="var(--accent-gold-light)" />
-          <span>Ask a Question?</span>
+          <div className="pulse-dot" style={{ flexShrink: 0 }} />
+          <Bot size={20} color="var(--accent-gold-light)" style={{ flexShrink: 0 }} />
+          <span className="widget-trigger-text">Ask a Question?</span>
         </button>
       )}
 
