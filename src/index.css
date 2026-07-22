@@ -272,6 +272,32 @@ h1, h2, h3, h4, .font-serif {
   }
 }
 
+/* Navigation Responsive Button Helpers */
+.btn-text-desktop {
+  display: inline;
+}
+
+.btn-text-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .btn-text-desktop {
+    display: none !important;
+  }
+  
+  .btn-text-mobile {
+    display: inline !important;
+  }
+
+  .nav-actions-mobile .btn {
+    width: auto !important;
+    padding: 7px 12px !important;
+    font-size: 0.8rem !important;
+    gap: 6px !important;
+  }
+}
+
 @media (max-width: 480px) {
   h1 {
     font-size: 1.95rem !important;

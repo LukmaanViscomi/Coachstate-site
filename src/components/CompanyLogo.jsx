@@ -4,14 +4,14 @@ export default function CompanyLogo({ size = 'medium', showText = true }) {
   const [imgError, setImgError] = useState(false);
 
   const dims = {
-    small: { height: 32, icon: 28 },
-    medium: { height: 42, icon: 36 },
-    large: { height: 56, icon: 48 }
-  }[size] || { height: 42, icon: 36 };
+    small: { height: 48, icon: 38, maxWidth: '220px' },
+    medium: { height: 64, icon: 50, maxWidth: '280px' },
+    large: { height: 84, icon: 66, maxWidth: '340px' }
+  }[size] || { height: 64, icon: 50, maxWidth: '280px' };
 
-  // Use official transparent website logo
+  // Use official transparent website logo with no buffer
   const logoSrc = showText 
-    ? '/assets/Coachstate_assets/website_logo_transparent.png'
+    ? '/assets/Coachstate_assets/fulllogo_transparent_nobuffer.png'
     : '/assets/Coachstate_assets/icononly_transparent_nobuffer.png';
 
   if (!imgError) {
@@ -23,9 +23,9 @@ export default function CompanyLogo({ size = 'medium', showText = true }) {
           onError={() => setImgError(true)}
           style={{
             height: `${dims.height}px`,
-            maxWidth: '220px',
+            maxWidth: dims.maxWidth,
             objectFit: 'contain',
-            filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))'
+            filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.4))'
           }}
         />
       </div>

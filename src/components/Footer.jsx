@@ -21,7 +21,7 @@ export default function Footer({ onOpenBooking, onOpenGoogleSettings, onOpenLega
               <CompanyLogo size="medium" />
             </div>
             <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '20px' }}>
-              Coachstate Executive & Personal Advisory by Lukmaan. ANLP Registered Trainer & Coach since 2012. Synchronized with Google Workspace Calendar (`lv@coachstate.online`).
+              Coachstate Executive & Personal Advisory by Lukmaan. ANLP Registered Trainer & Coach since 2012.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="badge badge-gold">
               <Lock size={12} /> ANLP Accredited Code of Ethics
@@ -48,19 +48,20 @@ export default function Footer({ onOpenBooking, onOpenGoogleSettings, onOpenLega
             </ul>
           </div>
 
-          {/* Google Integration & Compliance */}
+          {/* Direct Advisory & Booking */}
           <div>
-            <div style={{ color: '#FFF', fontWeight: '700', marginBottom: '16px', fontSize: '0.95rem' }}>Google Integration</div>
+            <div style={{ color: '#FFF', fontWeight: '700', marginBottom: '16px', fontSize: '0.95rem' }}>Direct Advisory & Booking</div>
             <div style={{ background: 'rgba(15, 23, 42, 0.7)', padding: '16px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-glass)', marginBottom: '14px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#10B981', fontWeight: '600', fontSize: '0.84rem', marginBottom: '6px' }}>
-                <Video size={14} /> Google Meet Synced
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#D4AF37', fontWeight: '600', fontSize: '0.84rem', marginBottom: '6px' }}>
+                <ShieldCheck size={14} /> Confidential & Direct
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-                Automated Google Meet links generated for <code>lv@coachstate.online</code>.
+                Confidential 1-on-1 advisory sessions directly with Lukmaan for founders and C-Suite leaders.
               </div>
             </div>
-            <button onClick={onOpenGoogleSettings} className="btn btn-outline-gold btn-sm" style={{ width: '100%' }}>
-              Google Calendar Settings
+            <button onClick={() => onOpenBooking()} className="btn btn-primary btn-sm" style={{ width: '100%' }}>
+              <Calendar size={14} />
+              <span>Book Session Now</span>
             </button>
           </div>
 

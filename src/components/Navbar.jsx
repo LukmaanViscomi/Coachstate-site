@@ -29,36 +29,24 @@ export default function Navbar({ onOpenBooking, onOpenPortal, onOpenGoogleSettin
           <a href="#about" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '500', transition: 'color 0.2s' }}
              onMouseEnter={e => e.target.style.color = 'var(--text-gold)'}
              onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}>
-            About Evelyn
+            About Founder
           </a>
           <a href="#testimonials" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '500', transition: 'color 0.2s' }}
              onMouseEnter={e => e.target.style.color = 'var(--text-gold)'}
              onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}>
             Client Results
           </a>
-
-          {/* Integration Status Button */}
-          <button 
-            onClick={onOpenGoogleSettings}
-            className="badge badge-emerald" 
-            style={{ cursor: 'pointer', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '6px 14px' }}
-            title="Google Calendar & Meet Sync (lv@coachstate.online)"
-          >
-            <Video size={14} color="#10B981" />
-            <span style={{ fontSize: '0.78rem' }}>Google Calendar & Meet Synced</span>
-            <Settings size={12} style={{ marginLeft: '4px', opacity: 0.8 }} />
-          </button>
         </nav>
 
         {/* Action CTAs */}
-        <div className="nav-actions-mobile" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        <div className="nav-actions-mobile" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <button 
             onClick={onOpenPortal}
-            className="btn btn-secondary btn-sm"
+            className="btn btn-secondary btn-sm nav-btn-compact"
             style={{ position: 'relative' }}
           >
             <UserCheck size={16} />
-            <span>My Bookings</span>
+            <span className="btn-text">My Bookings</span>
             {bookingCount > 0 && (
               <span style={{
                 position: 'absolute',
@@ -82,10 +70,11 @@ export default function Navbar({ onOpenBooking, onOpenPortal, onOpenGoogleSettin
 
           <button 
             onClick={() => onOpenBooking()} 
-            className="btn btn-primary btn-sm"
+            className="btn btn-primary btn-sm nav-btn-compact"
           >
             <Calendar size={16} />
-            <span>Book Coaching Session</span>
+            <span className="btn-text-desktop">Book Coaching Session</span>
+            <span className="btn-text-mobile">Book Session</span>
           </button>
         </div>
       </div>

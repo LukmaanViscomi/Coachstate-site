@@ -32,7 +32,7 @@ export const COACHING_TIERS = {
         "1-on-1 Clarity & Goal Mapping with Lukmaan",
         "Assessment of current mental state & behavioral bottlenecks",
         "Customized NLP & coaching roadmap recommendation",
-        "Direct Google Meet video link & Google Calendar invite"
+        "Confidential video conference & email confirmation"
       ]
     },
     {
@@ -48,7 +48,7 @@ export const COACHING_TIERS = {
         "ANLP Accredited Neuro-Linguistic Programming techniques",
         "Cognitive reframing, emotional mastery & focus architecture",
         "Post-session action plan & accountability guide",
-        "Direct Google Meet video link"
+        "Confidential 1-on-1 video session access"
       ]
     },
     {
@@ -60,11 +60,11 @@ export const COACHING_TIERS = {
       badge: "Comprehensive Package",
       tagline: "Full quarterly partnership with Lukmaan for habit mastery, core belief alignment, and peak vitality.",
       features: [
-        "12 x 60-min Weekly 1-on-1 Google Meet Sessions with Lukmaan",
+        "12 x 60-min Weekly 1-on-1 Advisory Sessions with Lukmaan",
         "Async WhatsApp / Slack priority support",
         "Personal values & subconscious blueprint alignment",
         "Mid-term progress benchmark report",
-        "Google Workspace calendar auto-sync"
+        "Automated calendar & email confirmation"
       ]
     }
   ],
@@ -78,7 +78,7 @@ export const COACHING_TIERS = {
       badge: "Single Advisory",
       tagline: "Strategic advisory for CEOs, VP leadership, and high-growth founders.",
       features: [
-        "60-min strategic consultation with Lukmaan via Google Meet",
+        "60-min 1-on-1 strategic consultation with Lukmaan",
         "High-stakes decision framework & risk review",
         "Executive presence & high-impact NLP communication polish",
         "Team dynamics & organizational alignment",
@@ -95,10 +95,10 @@ export const COACHING_TIERS = {
       tagline: "Dedicated strategic sounding board & continuous leadership development.",
       features: [
         "4 x 90-min Bi-weekly Executive Strategy Sessions with Lukmaan",
-        "Emergency 15-min 'War Room' video calls (Google Meet)",
+        "Priority 15-min 'War Room' strategy calls",
         "Stakeholder 360 feedback evaluation",
         "Board presentation & pitch deck coaching",
-        "Direct Google Workspace enterprise calendar integration"
+        "Priority calendar booking & executive client portal"
       ]
     },
     {
@@ -110,7 +110,7 @@ export const COACHING_TIERS = {
       badge: "Team Workshop",
       tagline: "Half-day workshop for executive committees and leadership pods.",
       features: [
-        "Half-day (4-hour) virtual intensive with Lukmaan (Google Meet Enterprise)",
+        "Half-day (4-hour) virtual executive intensive with Lukmaan",
         "Vision alignment & OKR roadmapping",
         "Conflict resolution & high-trust culture building",
         "Full executive debrief & strategic playbook"
@@ -170,7 +170,7 @@ export const TESTIMONIALS = [
     type: "Personal Breakthrough"
   },
   {
-    quote: "Lukmaan's direct 1-on-1 strategy calls and seamless Google Meet scheduling make weekly sessions a pleasure. High-impact advisory at its finest.",
+    quote: "Lukmaan's direct 1-on-1 strategy calls and deep NLP expertise make weekly advisory sessions invaluable. High-impact advisory at its finest.",
     author: "David K. Al-Mansoor",
     title: "Managing Director",
     company: "Global Capital Partners",

@@ -12,10 +12,7 @@ export default function HeroSection({ onOpenBooking }) {
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
               <span className="badge badge-gold" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Award size={14} /> ANLP Master Trainer & Accredited Coach
-              </span>
-              <span className="badge badge-indigo">
-                <Video size={14} /> Google Meet Synced (lv@coachstate.online)
+                <Award size={14} /> Accredited NLP Master Practitioner & ANLP member
               </span>
             </div>
 
@@ -24,7 +21,7 @@ export default function HeroSection({ onOpenBooking }) {
             </h1>
 
             <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', marginBottom: '32px', maxWidth: '600px', lineHeight: '1.7' }}>
-              Bespoke Neuro-Linguistic Programming (NLP) & Executive Business Advisory directly with <strong>Lukmaan</strong>. ANLP Practitioner & Coach since 2012, and NLP Academy Registered Trainer since 2013. Seamlessly scheduled into Google Calendar.
+              Bespoke Neuro-Linguistic Programming (NLP) & Executive Business Advisory directly with <strong>Lukmaan</strong>. ANLP Practitioner & Coach since 2012, and NLP Academy Registered Trainer since 2013.
             </p>
 
             {/* Accreditation Badge Strip */}
@@ -65,15 +62,15 @@ export default function HeroSection({ onOpenBooking }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px', pt: '16px', borderTop: '1px solid var(--border-glass)', flexWrap: 'wrap' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle2 size={16} color="var(--accent-gold)" />
-                <span style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>Instant Google Meet Link</span>
+                <span style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>Confidential 1-on-1 Advisory</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle2 size={16} color="var(--accent-gold)" />
-                <span style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>Google Calendar Auto-Sync</span>
+                <span style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>Bespoke Executive Strategy</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle2 size={16} color="var(--accent-gold)" />
-                <span style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>ANLP Code of Ethics</span>
+                <span style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>ANLP Accredited Code of Ethics</span>
               </div>
             </div>
           </div>
