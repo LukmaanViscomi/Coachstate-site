@@ -92,9 +92,8 @@ export default function HeroSection({ onOpenBooking }) {
               }} />
 
               {/* Lukmaan Executive Photo Container */}
-              <div style={{
+              <div className="hero-portrait-container" style={{
                 width: '100%',
-                height: '440px',
                 borderRadius: 'var(--radius-md)',
                 overflow: 'hidden',
                 marginBottom: '20px',
@@ -105,12 +104,7 @@ export default function HeroSection({ onOpenBooking }) {
                 <img 
                   src="/assets/lukmaan/lukmaan_boat_beach.png" 
                   alt="Lukmaan Executive Coach" 
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center 15%'
-                  }}
+                  className="hero-portrait-img"
                 />
                 <div style={{
                   position: 'absolute',

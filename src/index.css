@@ -359,7 +359,28 @@ html, body {
   color: var(--text-muted);
 }
 
+/* Hero Portrait Image Framing */
+.hero-portrait-container {
+  height: 460px;
+}
+
+.hero-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 5%;
+}
+
 @media (max-width: 768px) {
+  .hero-portrait-container {
+    height: 420px !important;
+  }
+
+  .hero-portrait-img {
+    object-fit: cover !important;
+    object-position: 72% 0% !important;
+  }
+
   .logo-subtitle-desktop {
     display: none !important;
   }
