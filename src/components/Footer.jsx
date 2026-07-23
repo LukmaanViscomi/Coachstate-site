@@ -13,7 +13,7 @@ export default function Footer({ onOpenBooking, onOpenGoogleSettings, onOpenLega
     }}>
       <div className="container">
         
-        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1.2fr', gap: '40px', marginBottom: '48px' }}>
+        <div className="footer-grid">
           
           {/* Brand Info */}
           <div>
@@ -68,7 +68,7 @@ export default function Footer({ onOpenBooking, onOpenGoogleSettings, onOpenLega
         </div>
 
         {/* Bottom Bar */}
-        <div style={{ pt: '24px', borderTop: '1px solid var(--border-glass)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+        <div className="footer-bottom-bar">
           <div>
             © {new Date().getFullYear()} Coachstate (`coachstate.online`). All rights reserved. Registered ANLP Trainer.
           </div>

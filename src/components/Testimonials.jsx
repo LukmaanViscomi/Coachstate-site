@@ -52,7 +52,7 @@ export default function Testimonials() {
 
         {/* About Lukmaan Biography & ANLP Credentials Card */}
         <div id="about" className="glass-card" style={{ padding: '40px', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.7) 100%)', border: '1px solid var(--border-gold)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: '40px', alignItems: 'center' }}>
+          <div className="about-lukmaan-grid">
             
             {/* Formal Portrait Image */}
             <div style={{ position: 'relative' }}>
@@ -77,7 +77,7 @@ export default function Testimonials() {
               </div>
 
               {/* ANLP Accreditation Badge overlay */}
-              <div style={{
+              <div className="anlp-overlay-badge" style={{
                 position: 'absolute',
                 bottom: '-15px',
                 right: '20px',
@@ -114,7 +114,7 @@ export default function Testimonials() {
               </p>
 
               {/* Qualifications Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px', marginBottom: '24px' }}>
+              <div className="credentials-subgrid">
                 {COACH_INFO.credentials.map((cred, i) => (
                   <div key={i} style={{
                     padding: '14px',

@@ -6,13 +6,18 @@ export default function TriageAgentWidget({ onSelectTier }) {
   const [isDocked, setIsDocked] = useState(false);
   const [input, setInput] = useState('');
 
-  // Auto-dock to edge after 3.5 seconds
+  // Auto-dock to edge after 3.5 seconds whenever button is expanded and chat is closed
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsDocked(true);
-    }, 3500);
-    return () => clearTimeout(timer);
-  }, []);
+    let timer;
+    if (!isDocked && !isOpen) {
+      timer = setTimeout(() => {
+        setIsDocked(true);
+      }, 3500);
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isDocked, isOpen]);
   
   const [messages, setMessages] = useState([
     {
