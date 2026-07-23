@@ -39,14 +39,15 @@ export default function Navbar({ onOpenBooking, onOpenPortal, onOpenGoogleSettin
         </nav>
 
         {/* Action CTAs */}
-        <div className="nav-actions-mobile" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div className="nav-actions-mobile" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <button 
             onClick={onOpenPortal}
             className="btn btn-secondary btn-sm nav-btn-compact"
             style={{ position: 'relative' }}
           >
-            <UserCheck size={16} />
-            <span className="btn-text">My Bookings</span>
+            <UserCheck size={15} />
+            <span className="btn-text-desktop">My Bookings</span>
+            <span className="btn-text-mobile">Bookings</span>
             {bookingCount > 0 && (
               <span style={{
                 position: 'absolute',
@@ -55,9 +56,9 @@ export default function Navbar({ onOpenBooking, onOpenPortal, onOpenGoogleSettin
                 background: 'var(--accent-gold)',
                 color: '#080C16',
                 borderRadius: '50%',
-                width: '18px',
-                height: '18px',
-                fontSize: '0.72rem',
+                width: '16px',
+                height: '16px',
+                fontSize: '0.68rem',
                 fontWeight: 'bold',
                 display: 'flex',
                 alignItems: 'center',
@@ -72,9 +73,9 @@ export default function Navbar({ onOpenBooking, onOpenPortal, onOpenGoogleSettin
             onClick={() => onOpenBooking()} 
             className="btn btn-primary btn-sm nav-btn-compact"
           >
-            <Calendar size={16} />
-            <span className="btn-text-desktop">Book Coaching Session</span>
-            <span className="btn-text-mobile">Book Session</span>
+            <Calendar size={15} />
+            <span className="btn-text-desktop">Book Session</span>
+            <span className="btn-text-mobile">Book</span>
           </button>
         </div>
       </div>

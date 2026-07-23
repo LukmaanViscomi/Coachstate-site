@@ -21,7 +21,7 @@ export default function CompanyLogo({ size = 'medium', showText = true }) {
       />
       {showText && (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <div style={{
+          <div className="logo-title-text" style={{
             fontFamily: 'var(--font-serif)',
             fontSize: dims.fontSize,
             fontWeight: '800',

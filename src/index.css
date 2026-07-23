@@ -330,6 +330,11 @@ html, body {
     display: none !important;
   }
 
+  .logo-title-text {
+    font-size: 1.12rem !important;
+    letter-spacing: 0.03em !important;
+  }
+
   .btn-text-desktop {
     display: none !important;
   }
@@ -346,8 +351,8 @@ html, body {
   .nav-actions-mobile .btn {
     width: auto !important;
     padding: 6px 10px !important;
-    font-size: 0.78rem !important;
-    gap: 5px !important;
+    font-size: 0.76rem !important;
+    gap: 4px !important;
     white-space: nowrap !important;
   }
 
@@ -362,14 +367,14 @@ html, body {
   }
 
   .triage-widget-container {
-    bottom: 120px !important;
+    bottom: 90px !important;
     right: 0 !important;
     z-index: 9999 !important;
   }
 
   .widget-trigger-btn {
-    padding: 10px 16px 10px 14px !important;
-    font-size: 0.82rem !important;
+    padding: 10px 14px 10px 12px !important;
+    font-size: 0.8rem !important;
   }
 }
 
